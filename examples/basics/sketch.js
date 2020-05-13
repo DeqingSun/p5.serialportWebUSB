@@ -10,7 +10,7 @@ function setup() {
   // Instantiate our SerialPort object
   serial = new p5.SerialPort();
     
-  serial.open();
+  serial.open(true,9600);   //first parameter: Whether to connect automatically to paired device
 
   // When we some data from the serial port
   serial.on('data', gotData);
@@ -107,5 +107,5 @@ function draw() {
 }
 
 function mouseClicked() {
-  serial.open();
+  serial.open(true,9600);
 }
