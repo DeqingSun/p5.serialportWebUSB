@@ -109,3 +109,13 @@ function draw() {
 function mouseClicked() {
   serial.open(true,9600);
 }
+
+function keyPressed() {
+    if (key=='i'){
+        console.log(serial.isConnected())
+    }
+    
+    if (key=='c'){
+        console.log(serial.close())
+    }
+}
