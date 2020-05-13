@@ -8,7 +8,7 @@ function setup() {
   frameRate(15);
 
   // Instantiate our SerialPort object
-  serial = new p5.SerialPort();
+  serial = new p5.SerialPortWebUSB();
     
   serial.open(true,9600);   //first parameter: Whether to connect automatically to paired device
 
