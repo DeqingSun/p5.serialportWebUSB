@@ -118,4 +118,10 @@ function keyPressed() {
     if (key=='c'){
         console.log(serial.close())
     }
+    
+    if (key=='s'){
+        serial.write(33)
+        serial.write([61,10])
+        serial.write("hello\n")
+    }
 }
