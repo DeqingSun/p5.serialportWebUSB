@@ -4,26 +4,13 @@ let latestData = "waiting for data";  // you'll use this to write incoming data 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+    
+  frameRate(15);
 
   // Instantiate our SerialPort object
-  serial = new p5.SerialPort();
-
-  // Get a list the ports available
-  // You should have a callback defined to see the results
-  serial.list();
-
-  // Assuming our Arduino is connected, let's open the connection to it
-  // Change this to the name of your arduino's serial port
-  serial.open("/dev/tty.usbmodem141101");
-
-  // Here are the callbacks that you can register
-  // When we connect to the underlying server
-  serial.on('connected', serverConnected);
-
-  // When we get a list of serial ports that are available
-  serial.on('list', gotList);
-  // OR
-  //serial.onList(gotList);
+  serial = new p5.SerialPortWebUSB();
+    
+  serial.open(true,9600);   //first parameter: Whether to connect automatically to paired device
 
   // When we some data from the serial port
   serial.on('data', gotData);
@@ -117,4 +104,24 @@ function draw() {
   ellipse(50,50,data,data);
 }
 */
+}
+
+function mouseClicked() {
+  serial.open(true,9600);
+}
+
+function keyPressed() {
+    if (key=='i'){
+        console.log(serial.isConnected())
+    }
+    
+    if (key=='c'){
+        console.log(serial.close())
+    }
+    
+    if (key=='s'){
+        serial.write(33)
+        serial.write([61,10])
+        serial.write("hello\n")
+    }
 }
